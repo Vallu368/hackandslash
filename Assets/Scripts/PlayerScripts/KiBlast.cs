@@ -23,7 +23,7 @@ public class KiBlast : MonoBehaviour
     {
         if (aim.aim)
         {
-            if (Input.GetKeyDown(KeyCode.R))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 if (stats.currentEnergy >= energyDrain)
                 {
