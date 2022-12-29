@@ -9,12 +9,14 @@ public class FlyBehaviour : GenericBehaviour
 	public float flyMaxVerticalAngle = 60f;       // Angle to clamp camera vertical movement when flying.
 
 	private int flyBool;                          // Animator variable related to flying.
-	private bool fly = false;                     // Boolean to determine whether or not the player activated fly mode.
+	public bool fly = false;                     // Boolean to determine whether or not the player activated fly mode.
 	private CapsuleCollider col;                  // Reference to the player capsulle collider.
+	private PlayerStats stats;
 
 	// Start is always called after any Awake functions.
 	void Start()
 	{
+		stats = this.gameObject.GetComponent<PlayerStats>();
 		// Set up the references.
 		flyBool = Animator.StringToHash("Fly");
 		col = this.GetComponent<CapsuleCollider>();
@@ -42,9 +44,27 @@ public class FlyBehaviour : GenericBehaviour
 			{
 				// Register this behaviour.
 				behaviourManager.RegisterBehaviour(this.behaviourCode);
+				
 			}
 			else
 			{
+				// Set collider direction to vertical.
+				col.direction = 1;
+				// Set camera default offset.
+				behaviourManager.GetCamScript.ResetTargetOffsets();
+
+				// Unregister this behaviour and set current behaviour to the default one.
+				behaviourManager.UnregisterBehaviour(this.behaviourCode);
+			}
+		}
+		if (fly)
+        {
+			if (stats.currentEnergy <= 0)
+			{
+				Debug.Log("no energy");
+				fly = !fly;
+				behaviourManager.GetRigidBody.useGravity = true;
+				behaviourManager.GetAnim.SetBool(flyBool, false);
 				// Set collider direction to vertical.
 				col.direction = 1;
 				// Set camera default offset.

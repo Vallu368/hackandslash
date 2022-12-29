@@ -12,9 +12,9 @@ public class BasicBehaviour : MonoBehaviour
 
 	private float h;                                      // Horizontal Axis.
 	private float v;                                      // Vertical Axis.
-	private int currentBehaviour;                         // Reference to the current player behaviour.
-	private int defaultBehaviour;                         // The default behaviour of the player when any other is not active.
-	private int behaviourLocked;                          // Reference to temporary locked behaviour that forbids override.
+	public int currentBehaviour;                         // Reference to the current player behaviour.
+	public int defaultBehaviour;                         // The default behaviour of the player when any other is not active.
+	public int behaviourLocked;                          // Reference to temporary locked behaviour that forbids override.
 	private Vector3 lastDirection;                        // Last direction the player was moving.
 	private Animator anim;                                // Reference to the Animator component.
 	private ThirdPersonOrbitCamBasic camScript;           // Reference to the third person camera script.
@@ -22,8 +22,8 @@ public class BasicBehaviour : MonoBehaviour
 	private bool changedFOV;                              // Boolean to store when the sprint action has changed de camera FOV.
 	private int hFloat;                                   // Animator variable related to Horizontal Axis.
 	private int vFloat;                                   // Animator variable related to Vertical Axis.
-	private List<GenericBehaviour> behaviours;            // The list containing all the enabled player behaviours.
-	private List<GenericBehaviour> overridingBehaviours;  // List of current overriding behaviours.
+	public List<GenericBehaviour> behaviours;            // The list containing all the enabled player behaviours.
+	public List<GenericBehaviour> overridingBehaviours;  // List of current overriding behaviours.
 	private Rigidbody rBody;                              // Reference to the player's rigidbody.
 	private int groundedBool;                             // Animator variable related to whether or not the player is on the ground.
 	private Vector3 colExtents;                           // Collider extents for ground test. 
