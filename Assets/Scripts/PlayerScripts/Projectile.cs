@@ -5,6 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float life = 3f;
+    public GameObject onHitVFX;
 
     private void Awake()
     {
@@ -13,7 +14,11 @@ public class Projectile : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log(collision.gameObject);
-        Destroy(gameObject);
+        if (collision.gameObject.tag != "Player")
+        {
+            Debug.Log(collision.gameObject);
+            Instantiate(onHitVFX, this.transform.position, this.transform.rotation);
+            this.gameObject.GetComponent<SphereCollider>().enabled = false;
+        }
     }
 }

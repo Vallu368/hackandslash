@@ -6,6 +6,7 @@ public class KiBlast : MonoBehaviour
 {
     public Transform projectileSpawnPoint;
     public GameObject projectilePrefab;
+    public GameObject blastVFXPrefab;
     public float projectileSpeed = 10;
     public int energyDrain = 5;
 
@@ -28,6 +29,7 @@ public class KiBlast : MonoBehaviour
                 {
                     stats.currentEnergy = stats.currentEnergy - energyDrain;
                     Debug.Log("fired projectile");
+                    //Instantiate(blastVFXPrefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
                     var projectile = Instantiate(projectilePrefab, projectileSpawnPoint.position, projectileSpawnPoint.rotation);
                     projectile.GetComponent<Rigidbody>().velocity = projectileSpawnPoint.forward * projectileSpeed;
                 }
