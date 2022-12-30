@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerStats : MonoBehaviour
 {
     public int powerLevel;
+    public int maxHealth = 100;
+    public int currentHealth;
     public int maxEnergy;
     public int currentEnergy;
     public int energyDrain;
@@ -13,6 +15,7 @@ public class PlayerStats : MonoBehaviour
     private int nextUpdate;
     void Start()
     {
+        currentHealth = maxHealth;
         currentEnergy = maxEnergy;
         fly = this.gameObject.GetComponent<FlyBehaviour>();
     }
